@@ -7,14 +7,14 @@
     float: left;
     width: 65%;
     padding: 10px;
-    height: 470px; /* Should be removed. Only for demonstration */
+    height: 525px; /* Should be removed. Only for demonstration */
   }
 
   .column {
     float: left;
     width: 35%;
     padding: 10px;
-    height: 470px;
+    height: 525px;
     align-content: center;
     /* Should be removed. Only for demonstration */
   }
@@ -63,7 +63,7 @@
     height: 50px;
     border-radius: 10px;
     font-family: Montserrat-Bold;
-    font-size: 12px;
+    font-size: 16px;
     color: #fff;
     line-height: 1.2;
     text-transform: uppercase;
@@ -71,9 +71,32 @@
     transition: all .4s;
  }
 
+ .registerButton{
+   margin-right: 5px;;
+  background-color:#6675df; /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  border-radius: 2px;
+  font-family: Montserrat-Bold;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all .4s;
+}
+
   input[type=text],input[type=password]{
     width: 75%;
-    padding:20px;
+    padding:10px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -82,6 +105,8 @@
     color: #555;
     line-height: 1.2;
   }
+
+
   
   input[type=submit] {
     width: 100%;
@@ -108,9 +133,53 @@
   }
 
   #wall {
-    background: url("C:\Users\cogdotnet1696\Desktop\Anusha_Poc\POC_Angular\src\assets\wall6.jpg");
+    background: url("..\..\assets\wall6.jpg");
     background-size:cover;
     background-repeat: no-repeat;
-    
-
   }
+    .navigation-menu ul {
+      padding: 0px;
+      margin: 0px;
+    
+    }
+    ul {   
+        padding: 0;
+        overflow: hidden;
+        background-color: skyblue;
+    }
+    
+    li {
+        float: left;
+    }
+    
+    li a {
+        display: inline-block;
+        color: black;
+        text-align: center;
+        padding: 10px 20px;
+        text-decoration: none;
+    }
+    
+    
+    
+    #navigation ul
+    {
+      font-size: 1.4em;
+    }
+    
+    #navigation ul li
+    {
+        display: inline;
+      color:white;
+    }
+    
+    
+    .logo{
+      /* background-color: slateblue; */
+      margin-top: 5px;
+      margin-left: 5px;
+      height:50px;
+      width: 80px;
+    }
+
+ 

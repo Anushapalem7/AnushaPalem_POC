@@ -1,27 +1,47 @@
+<div class="navigation-menu">
+    <div id ="navigation">
+    <ul>
+        <li><img class ="logo"  src="././assets/logo.png"></li>
+        <li style="margin-top: 10px;"><a class="nav-link active" aria-current="page" [routerLink]="['login']">Digi-Books</a></li> 
+        <li style="margin-top: 10px;margin-left: 1000px;font-size: 16px;"><a class="nav-link" (click)="OpenPopup()">SignUp</a></li>
+    </ul>
+    
+    </div>
+    </div>
 <div class="row">
     <div id="wall" class="column1" style="background-color:#aaa;">
-
     </div>
     <div class="column">
-        <div style="height: 50px;">
-
-        </div>
         <div>
-            <form class="LoginForm">
+          <form class="LoginForm" *ngIf = "showPopup">
 
+            <h3 class="loginhead">Register Here..!!</h3>
+            <input class="inputstyle" name="Email" [(ngModel)]="user.Email" id="email" type="text" placeholder="Email"><br>
+            <br />
+            <input class="inputstyle" name="UserName" [(ngModel)]="user.UserName" id="uName" type="text" placeholder="UserName"><br>
+            <br />
+            <input class="inputstyle"  name="Password" [(ngModel)]="user.Password" id="password" type="password" placeholder="Password"><br>
+            <br />
+            <input class="inputstyle"  name="cPassword" [(ngModel)]="user.cPassword" id="cPassword" type="password" placeholder="Confirm Password"><br>
+            <br />
+            <input class="registerButton" value="Register" type="button" (click)="Register()"><input class="registerButton" style=" background-color: #f44336;" value="Cancle" type="button">
+        </form>
+            <form class="LoginForm" *ngIf = "!showPopup">
+            <br/><br/>
                 <h3 class="loginhead">Login Here..!!</h3>
-                <input class="inputstyle" id="uName" type="text" placeholder="UserName"><br>
+                <br/>
+                <input class="inputstyle" name="UserName" [(ngModel)]="user.UserName" id="uName" type="text" placeholder="UserName"><br>
                 <br /><br />
-                <input class="inputstyle" id="password" type="password" placeholder="Password"><br>
+                <input class="inputstyle" name="Password" [(ngModel)]="user.Password" id="password" type="password" placeholder="Password"><br>
                 <br /><br />
                 <div class ="radioStyle">
                     <label for="selectUser">Select User Type : </label>
-                    <input type="radio" id="author" name="user" value="Author">
+                    <input type="radio" id="author" name="user" value="Author" (click)="selectType($event)">
                     <label for="author">Author</label> &nbsp;
-                    <input type="radio" id="reader" name="user" value="Reader">
+                    <input type="radio" id="reader" name="user" value="Reader" (click)="selectType($event)">
                     <label for="reader">Reader</label>
                 </div>
-                <input class="submitButton" value="Login " type="button">
+                <input class="submitButton" value="Login " type="button" (click)="loginUser()">
             </form>
         </div>
     </div>

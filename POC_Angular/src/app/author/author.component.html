@@ -1,1 +1,91 @@
-<p>author works!</p>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="navigation-menu">
+        <div id="navigation">
+            <ul>
+                <li><img class="logo" src="././assets/logo.png"></li>
+                <li style="margin-top: 10px;"><a class="nav-link active" aria-current="page" [routerLink]="['login']">DigiBooks</a></li>
+                <li style="margin-left: 900px;margin-top: 20px;font-size: 16px;"> Anusha Palem</li>
+                <li style="margin-top: 10px;font-size: 16px;"><a class="nav-link" [routerLink]="['logout']">LogOut</a></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="navigation-menu" >
+            <div id="navigation">
+                <ul style="background-color: cornsilk;">
+                    <li style="margin-top: 10px;"> <a id="allBooks" type="button" (click)="ShowBooks()">All Books</a></li>
+                    <li style="margin-top: 10px;"><a id="createBook"
+                        type="button" (click)="ShowCreate()">Create Book</a></li>
+                </ul>
+            </div>
+        </div>
+    
+    <div class="gridStyles" *ngIf ="hideAllBooks">
+        <h3 class="createHead"> All Books</h3>
+        <table id="books">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>PublishedDate</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of books">
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.author }}</td>
+                    <td>{{ item.publisher }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{ item.publishedDate }}</td>
+                    <td><button type="button"style="margin-right:2px;border:transparent;border-radius: 2px; background-color:blue;color: white;" (click)="Edit(item)">Edit</button>
+                    <button *ngIf="!item.blocked" name="block"  type="button"style="margin-right:2px; border:transparent;border-radius: 2px; background-color: orange;color: white;" (click)="Block(item)">Block</button>
+                    <button *ngIf="item.blocked" name="unblock" type="button" style="border:transparent;border-radius: 2px; background-color:olive ;color:white;" (click)="Block(item)">UnBlock</button> 
+                    <button type="button"style="border:transparent;border-radius: 2px; background-color: red;color: white;" (click)="delete(item.id)">Delete</button></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <form *ngIf="!hideCreate" class="LoginForm">
+        <br />
+        <h3 class="createHead"> Create Book &nbsp; <i class="fa fa-book" style="font-size:30px;color:white"></i> </h3>
+        <input class="inputstyle"  name="title" [(ngModel)]="book.title" id="title" type="text" placeholder="Enter Title"><br>
+        <br />
+        <input class="inputstyle" name="category" [(ngModel)]="book.category" id="category" type="Text" placeholder="Enter Category"><br>
+        <br />
+        <input class="inputstyle"  name="price" [(ngModel)]="book.price" id="price" type="Text" placeholder="Enter Price"><br>
+        <br />
+        <input class="inputstyle" name="publisher" [(ngModel)]="book.publisher"id="publisher" type="Text" placeholder="Enter Publisher"><br>
+        <br />
+        <select name="active" (change)="onSelected(status.value)" #status>
+            <option value="Active" >Active</option>
+            <option value="Not Avtive">Not Active</option>
+          </select>
+          <br/>
+        <!-- <input class="inputstyle" id="active" type="Text" placeholder="Enter Active / Not Active"><br> -->
+        <br />
+        <input class="contentBox" name="content" [(ngModel)]="book.content" id="content" type="Text" style="height: 100px;" placeholder="Content Here ..."><br>
+        <br />
+        <!-- <input class="submitButton" value="Search" type="button"> -->
+        
+            <button class="submitButton" (click)="Add()"><i class="fa fa-book" style="font-size:25px;color:white" ></i>&nbsp;submit</button>
+    </form>
+</div>
+</body>
+
+</html>

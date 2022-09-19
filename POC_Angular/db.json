@@ -1,0 +1,76 @@
+{
+  "books": [
+   {
+   "title":"new life",
+    "author":"anusha",
+    "publisher":"anusha",
+    "category":"friction'",
+    "price":500,
+    "publishedDate": "14-09-2022"
+   },
+   {
+   "title":"new life",
+    "author":"anusha",
+    "publisher":"anusha",
+    "category":"friction'",
+    "price":500,
+    "publishedDate": "14-09-2022"
+   },
+   {
+   "title":"new life",
+    "author":"anusha",
+    "publisher":"anusha",
+    "category":"friction'",
+    "price":500,
+    "publishedDate": "14-09-2022"
+   },
+   {
+   "title":"new life",
+    "author":"anusha",
+    "publisher":"anusha",
+    "category":"friction'",
+    "price":500,
+    "publishedDate": "14-09-2022"
+   },
+   {
+   "title":"new life",
+    "author":"anusha",
+    "publisher":"anusha",
+    "category":"friction'",
+    "price":500,
+    "publishedDate": "14-09-2022"
+   },
+   {
+   "title":"new life",
+    "author":"anusha",
+    "publisher":"anusha",
+    "category":"friction'",
+    "price":500,
+    "publishedDate": "14-09-2022"
+   },
+   {
+   "title":"new life",
+    "author":"anusha",
+    "publisher":"anusha",
+    "category":"friction'",
+    "price":500,
+    "publishedDate": "14-09-2022"
+   },
+   {
+   "title":"new life",
+    "author":"anusha",
+    "publisher":"anusha",
+    "category":"friction'",
+    "price":500,
+    "publishedDate": "14-09-2022"
+   },
+   {
+   "title":"new life",
+    "author":"anusha",
+    "publisher":"anusha",
+    "category":"friction'",
+    "price":500,
+    "publishedDate": "14-09-2022"
+   }
+  ]
+}

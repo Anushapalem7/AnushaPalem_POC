@@ -1,1 +1,77 @@
-<p>reader works!</p>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="navigation-menu">
+        <div id="navigation">
+            <ul>
+                <li><img class="logo" src="././assets/logo.png"></li>
+                <li style="margin-top: 10px;"><a class="nav-link active" aria-current="page"
+                        [routerLink]="['login']">DigiBooks</a></li>
+                        <li style="margin-left: 900px;margin-top: 20px;font-size: 16px;"> Anusha Palem</li>
+                <li style="margin-top: 10px;font-size: 16px;"><a class="nav-link"
+                        [routerLink]="['logout']">LogOut</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="navigation-menu" >
+        <div id="navigation">
+            <ul style="background-color: cornsilk;">
+                <li style="margin-top: 10px;"> <a id="allBooks" type="button" (click)="ShowBooks()">All Books</a></li>
+                <li style="margin-top: 10px;"><a id="createBook"
+                    type="button" (click)="ShowCreate()">Search Book</a></li>
+            </ul>
+        </div>
+    </div>
+
+    
+    <div class="gridStyles" *ngIf="hideAllBooks">
+        <h3 class="createHead"> All Books</h3>
+        <table id="books">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>PublishedDate</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of books">
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.author }}</td>
+                    <td>{{ item.publisher }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{ item.publishedDate }}</td>
+                    <td><button type="button"
+                            style="border:transparent;border-radius: 2px; background-color: green;color: white;">Buy</button>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <form class="LoginForm" *ngIf="!hideCreate">
+        <br />
+        <h3 class="searchHead"> Search &nbsp;<i class="fa fa-search"></i> </h3>
+        <input class="inputstyle" id="title" type="text" placeholder="Enter Title"><br>
+        <br />
+        <input class="inputstyle" id="author" type="Text" placeholder="Enter Author"><br>
+        <br />
+        <input class="inputstyle" id="publisher" type="Text" placeholder="Enter Publisher"><br>
+        <br />
+        <input class="inputstyle" id="rDate" type="date" placeholder="Enter Released Date"><br>
+        <br />
+        <!-- <input class="submitButton" value="Search" type="button"> -->
+        <button class="submitButton" type="submit"><i class="fa fa-search"></i>&nbsp;Search</button>
+    </form>
+</body>
+
+</html>
