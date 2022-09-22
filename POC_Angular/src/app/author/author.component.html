@@ -20,9 +20,9 @@
         <div class="navigation-menu" >
             <div id="navigation">
                 <ul style="background-color: cornsilk;">
-                    <li style="margin-top: 10px;"> <a id="allBooks" type="button" (click)="ShowBooks()">All Books</a></li>
-                    <li style="margin-top: 10px;"><a id="createBook"
-                        type="button" (click)="ShowCreate()">Create Book</a></li>
+                    <li style="margin-top: 10px;"> <a id="allBooks" type="button" (click)="ShowBooks()">My Books</a></li>
+                    <li style="margin-top: 10px;"><a id="otherBooks" type="button" (click)="Showother()">All Books</a></li>
+                    <li style="margin-top: 10px;"><a id="createBook" type="button" (click)="ShowCreate()">Create Book</a></li>
                 </ul>
             </div>
         </div>
@@ -49,11 +49,12 @@
                     <td>{{ item.category }}</td>
                     <td>{{item.price}}</td>
                     <td>{{ item.publishedDate }}</td>
-                    <td><button type="button"style="margin-right:2px;border:transparent;border-radius: 2px; background-color:blue;color: white;" (click)="Edit(item)">Edit</button>
-                    <button *ngIf="!item.blocked" name="block"  type="button"style="margin-right:2px; border:transparent;border-radius: 2px; background-color: orange;color: white;" (click)="Block(item)">Block</button>
-                    <button *ngIf="item.blocked" name="unblock" type="button" style="border:transparent;border-radius: 2px; background-color:olive ;color:white;" (click)="Block(item)">UnBlock</button> 
-                    <button type="button"style="border:transparent;border-radius: 2px; background-color: red;color: white;" (click)="delete(item.id)">Delete</button></td>
-                    
+                    <td>
+                    <button *ngIf="!isNotReader"type="button" style="border:transparent;border-radius: 2px; background-color: green;color: white;">Buy</button>
+                    <button *ngIf="isNotReader" type="button"style="margin-right:2px;border:transparent;border-radius: 2px; background-color:blue;color: white;" (click)="Edit(item)">Edit</button>
+                    <button *ngIf="!item.blocked && isNotReader" name="block"  type="button"style="margin-right:2px; border:transparent;border-radius: 2px; background-color: orange;color: white;" (click)="Block(item)">Block</button>
+                    <button *ngIf="item.blocked && isNotReader" name="unblock" type="button" style="border:transparent;border-radius: 2px; background-color:olive ;color:white;" (click)="Block(item)">UnBlock</button> 
+                    <button *ngIf="isNotReader" type="button"style="border:transparent;border-radius: 2px; background-color: red;color: white;" (click)="delete(item.id)">Delete</button></td>
                 </tr>
             </tbody>
         </table>

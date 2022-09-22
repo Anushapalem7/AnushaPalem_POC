@@ -11,12 +11,14 @@ import { Router } from '@angular/router';
 })
 export class AuthorComponent implements OnInit {
   books: Book[] = [];
+  myBooks: Book[] = [];
   allBooks: Book[] = [];
   book:Book = new Book();
   public hideCreate = true;
   public hideAllBooks = true;
   public isEdit = false;
   public isBlocked = false;
+  public isNotReader = true;
   public userId = "";
   public userName = localStorage.getItem('userName');
   public userJson = localStorage.getItem('userId');
@@ -43,6 +45,14 @@ export class AuthorComponent implements OnInit {
       this.ErrorMessage="Some error have occured";
       document.getElementById('btnErrorMsg')?.click();
     });
+
+    this._service.getAuthorAllBooks(this.userId).subscribe(res=>this.SuccessAll(res),res=>
+    {
+      console.log(res);
+      this.ErrorMessage="Some error have occured";
+      document.getElementById('btnErrorMsg')?.click();
+    });
+
   }
   onSelected(value:string): void {
 		this.book.activeStatus = value;
@@ -136,17 +146,27 @@ export class AuthorComponent implements OnInit {
     
   }
   ShowBooks(){
+    this.books = this.myBooks;
     this.hideCreate = true;
     this.hideAllBooks = true;
+    this.isNotReader = true;
   }
   ShowCreate(){
     this.hideCreate = false;
     this.hideAllBooks = false;
   }
+  Showother(){
+    this.hideAllBooks = true;
+    this.hideCreate = true;
+    this.isNotReader = false;
+    this.books= this.allBooks;
+  }
+
   Success(input:any){
     debugger;
     console.log(input);
-    this.books=input;
+    this.myBooks=input;
+    this.books=this.myBooks
     console.log(this.books);
   }
   SuccessAll(input:any){

@@ -143,7 +143,7 @@ li a {
   margin-top: 20px;
   margin-left: 5px;
 }
-#allBooks, #createBook {
+#allBooks, #createBook, #otherBooks {
 /* width: 150px; */
 height: 10px;
 padding: 20px ;
@@ -151,5 +151,5 @@ padding: 20px ;
 font-size: 18px;
 text-align: center;
 }
-#allBooks:hover, #createBook:hover {background-color: skyblue;}
+#allBooks:hover, #createBook:hover, #otherBooks:hover {background-color: skyblue;}
 
