@@ -24,6 +24,14 @@
             <br />
             <input class="inputstyle"  name="cPassword" [(ngModel)]="user.cPassword" id="cPassword" type="password" placeholder="Confirm Password"><br>
             <br />
+            <div class ="radioStyle">
+                <label for="selectUser">Select User Type : </label>
+                <input type="radio" id="author" name="user" value="Author" (click)="selectType($event)">
+                <label for="author">Author</label> &nbsp;
+                <input type="radio" id="reader" name="user" value="Reader" (click)="selectType($event)">
+                <label for="reader">Reader</label>
+            </div>
+            <br/>
             <input class="registerButton" value="Register" type="button" (click)="Register()"><input class="registerButton" style=" background-color: #f44336;" value="Cancle" type="button">
         </form>
             <form class="LoginForm" *ngIf = "!showPopup">

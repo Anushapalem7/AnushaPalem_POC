@@ -24,6 +24,20 @@ namespace POC_API.Controllers
         {
             return db.Books.Where(x => x.Blocked == false).ToList();
         }
+        [HttpGet]
+        [Route("AuthorBooks")]
+        public IEnumerable<Book> Get(int id)
+        {
+            return db.Books.Where(x => x.AuthorId == id).ToList();
+        }
+
+        [HttpGet]
+        [Route("AuthorAllBooks")]
+        public IEnumerable<Book> GetAll(int id)
+        {
+            return db.Books.Where(x => x.AuthorId != id).ToList();
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] Book book)
         {

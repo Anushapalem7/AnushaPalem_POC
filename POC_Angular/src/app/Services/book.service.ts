@@ -9,13 +9,23 @@ export class BookService {
 
     _loginUrl="https://localhost:44351/api/user/login-user";
     _registerUrl="https://localhost:44351/api/user";
-    _readerBooks="https://localhost:44351/api/books/ReaderBooks"
+    _readerBooks="https://localhost:44351/api/books/ReaderBooks";
+    _authorBooks="https://localhost:44351/api/books/AuthorBooks?id=";
+    _authorAllBooks="https://localhost:44351/api/books/AuthorAllBooks?id=";
     _booksUrl ="https://localhost:44351/api/books";
     idUrl ="https://localhost:44351/api/books?id=";
     uploadUrl = "https://localhost:44351/api/upload";
     constructor(private http:HttpClient,private _router:Router) { }
   getReaderBooks(){
      return this.http.get<any>(this._readerBooks);
+  }
+  getAuthorBooks(id :any){
+    debugger
+    return this.http.get<any>(this._authorBooks+id);
+  }
+  getAuthorAllBooks(id :any){
+    debugger
+    return this.http.get<any>(this._authorAllBooks+id);
   }
   getBooks(){
     return this.http.get<any>(this._booksUrl);

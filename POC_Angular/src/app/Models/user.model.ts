@@ -4,4 +4,5 @@ export class User{
     Password:string = '';
     cPassword:string='';
     Email :string =''; 
+    UserTpe :string='';
 }

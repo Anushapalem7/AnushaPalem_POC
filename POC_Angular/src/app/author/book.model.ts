@@ -4,6 +4,7 @@ export class Book{
     id:number=0;
     title:string='';
     author:string='';
+    authorId:number= 0;
     publisher:string='';
     category:string ='';
     content:string='';

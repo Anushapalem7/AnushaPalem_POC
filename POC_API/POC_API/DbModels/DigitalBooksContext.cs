@@ -18,6 +18,7 @@ namespace POC_API.DbModels
         }
 
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -65,6 +66,8 @@ namespace POC_API.DbModels
                 entity.Property(e => e.UserName)
                     .HasMaxLength(50)
                     .HasColumnName("userName");
+
+                entity.Property(e => e.UserTpe).HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);

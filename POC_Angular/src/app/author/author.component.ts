@@ -11,16 +11,23 @@ import { Router } from '@angular/router';
 })
 export class AuthorComponent implements OnInit {
   books: Book[] = [];
+  allBooks: Book[] = [];
   book:Book = new Book();
   public hideCreate = true;
   public hideAllBooks = true;
   public isEdit = false;
   public isBlocked = false;
+  public userId = "";
+  public userName = localStorage.getItem('userName');
+  public userJson = localStorage.getItem('userId');
+  
+  
   constructor(private _service:BookService,private _router:Router,private http: HttpClient) { }
   ErrorMessage:any='';
  
 
   ngOnInit(): void {
+    this.userId = this.userJson !== null ? JSON.parse(this.userJson) : " ";
     this.GetDataFromServer();
     this.book.activeStatus="Active";
   }
@@ -30,7 +37,7 @@ export class AuthorComponent implements OnInit {
   // }
   
   GetDataFromServer(){
-    this._service.getBooks().subscribe(res=>this.Success(res),res=>
+    this._service.getAuthorBooks(this.userId).subscribe(res=>this.Success(res),res=>
     {
       console.log(res);
       this.ErrorMessage="Some error have occured";
@@ -75,7 +82,8 @@ export class AuthorComponent implements OnInit {
       var bookData = {
         Id : this.book.id,
         Title : this.book.title,
-        Author : this.book.publisher,
+        Author : this.userName,
+        AuthorId : +(this.userId),
         Publisher : this.book.publisher,
         Category : this.book.category,
         Content : this.book.content,
@@ -102,7 +110,8 @@ export class AuthorComponent implements OnInit {
     else{
       var bookData2 = {
         Title : this.book.title,
-        Author : this.book.publisher,
+        Author : this.userName,
+        AuthorId : +(this.userId),
         Publisher : this.book.publisher,
         Category : this.book.category,
         Content : this.book.content,
@@ -140,7 +149,12 @@ export class AuthorComponent implements OnInit {
     this.books=input;
     console.log(this.books);
   }
-
+  SuccessAll(input:any){
+    debugger;
+    console.log(input);
+    this.allBooks=input;
+    console.log(this.allBooks);
+  }
   uploadFile(files:any){
     if(files.length==0){
       return ;

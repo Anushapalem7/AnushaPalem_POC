@@ -37,7 +37,7 @@ namespace POC_API.Controllers
             if (user != null)
             {
                 var tokenString = GenerateToken(user);
-                response = Ok(new { token = tokenString });
+                response = Ok(new { token = tokenString, userData = user });
             }
             return response;
         }

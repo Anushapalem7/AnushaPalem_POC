@@ -29,11 +29,13 @@ export class LoginComponent implements OnInit {
   loginUser(){
     this._service.loginUser(this.user).subscribe(res=>{
       localStorage.setItem('userName',this.user.UserName);
+      localStorage.setItem('userId',res.userData.id);
       localStorage.setItem('token',res.token);
-      if(this.userType == "Author")
+      if(res.userData.userTpe == "Author")
       this._router.navigate(['author']);
-      if(this.userType == "Reader")
+      if(res.userData.userTpe == "Reader")
       this._router.navigate(['reader']);
+      console.log(res);
     },res=>
     {
       console.log(res);
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
 
   selectType(event:any){
     this.userType = event.target.value;
+    this.user.UserTpe = event.target.value;
     console.log(this.userType);
   }
   Register(){
@@ -51,7 +54,8 @@ export class LoginComponent implements OnInit {
     var userdto = {
       UserName: this.user.UserName,
       Password: this.user.Password,
-      Email: this.user.Email
+      Email: this.user.Email,
+      UserTpe : this.user.UserTpe
     };
     
     this.http.post("https://localhost:44351/api/user", userdto).subscribe(res => { this._router.navigate(['login']);}, res => console.log(res))
