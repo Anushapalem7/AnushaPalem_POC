@@ -12,6 +12,7 @@ export class BookService {
     _readerBooks="https://localhost:44351/api/books/ReaderBooks"
     _booksUrl ="https://localhost:44351/api/books";
     idUrl ="https://localhost:44351/api/books?id=";
+    uploadUrl = "https://localhost:44351/api/upload";
     constructor(private http:HttpClient,private _router:Router) { }
   getReaderBooks(){
      return this.http.get<any>(this._readerBooks);
@@ -22,6 +23,10 @@ export class BookService {
     addBook(input:any){
       return this.http.post<any>(this._booksUrl,input);
     }
+    upload(input:any){
+      return this.http.post<any>(this.uploadUrl,input);
+    }
+
     editBook(input:any){
       return this.http.put<any>(this._booksUrl,input);
     }

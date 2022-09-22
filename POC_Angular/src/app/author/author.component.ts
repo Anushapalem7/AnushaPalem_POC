@@ -41,7 +41,7 @@ export class AuthorComponent implements OnInit {
 		this.book.activeStatus = value;
     console.log(this.book.activeStatus);
 	}
-
+  
   Edit(input:any){
     this.book = input;
     this.isEdit = true;
@@ -140,4 +140,25 @@ export class AuthorComponent implements OnInit {
     this.books=input;
     console.log(this.books);
   }
+
+  uploadFile(files:any){
+    if(files.length==0){
+      return ;
+    }
+
+    let fileToUpload=<File>files[0];
+    const formData=new FormData();
+
+    formData.append('file',fileToUpload,fileToUpload.name);
+    this._service.upload(formData).subscribe(res=>{
+      this._router.navigate(['author']);
+      this.GetDataFromServer();
+     },res=>
+     {
+       console.log(res);
+       this.ErrorMessage="Some error have occured";
+       document.getElementById('btnErrorMsg')?.click();
+     });
+  }
+
 }

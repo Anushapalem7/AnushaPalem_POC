@@ -81,6 +81,10 @@
         <br />
         <input class="contentBox" name="content" [(ngModel)]="book.content" id="content" type="Text" style="height: 100px;" placeholder="Content Here ..."><br>
         <br />
+        Upload Cover Image :
+        <input type="file" #file (change)="uploadFile(file.files)" value="browse
+        " style="display: none;" />
+        <button  (click)="file.click()" >Upload</button>
         <!-- <input class="submitButton" value="Search" type="button"> -->
         
             <button class="submitButton" (click)="Add()"><i class="fa fa-book" style="font-size:25px;color:white" ></i>&nbsp;submit</button>
