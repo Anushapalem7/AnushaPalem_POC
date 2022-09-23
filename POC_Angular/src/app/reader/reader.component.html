@@ -24,7 +24,9 @@
                 <li style="margin-top: 10px;"> <a id="allBooks" type="button" (click)="ShowBooks()">All Books</a></li>
                 <li style="margin-top: 10px;"><a id="createBook"
                     type="button" (click)="ShowCreate()">Search Book</a></li>
-            </ul>
+            <li style="margin-top: 10px;"><a id="orderBook"
+                type="button" (click)="showOrders()">My orders</a></li>
+        </ul>
         </div>
     </div>
 
@@ -53,6 +55,33 @@
                     <td>{{ item.publishedDate }}</td>
                     <td><button type="button"
                             style="border:transparent;border-radius: 2px; background-color: green;color: white;">Buy</button>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="gridStyles" *ngIf="showOrdres">
+        <h3 class="createHead"> My Orders</h3>
+        <table id="books">
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Order Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of orders">
+                    <td>{{ item.bookTitle }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{ item.orderDate }}</td>
+                    <td><button type="button"
+                            style="border:transparent;border-radius: 2px; background-color: green;color: white;">Order Details</button>
                 </tr>
             </tbody>
         </table>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from '../author/book.model';
+import { Order } from '../Models/order.model';
 import { BookService } from '../Services/book.service';
 
 @Component({
@@ -11,8 +12,10 @@ import { BookService } from '../Services/book.service';
 })
 export class ReaderComponent implements OnInit {
   books: Book[] = [];
+  orders: Order[] =[];
   public hideCreate = true;
   public hideAllBooks = true;
+  public showOrdres = false;
   constructor(private _service:BookService,private _router:Router,private http: HttpClient) { }
   ErrorMessage:any='';
  
@@ -32,13 +35,21 @@ export class ReaderComponent implements OnInit {
   }
 
  
+  showOrders(){
+this.showOrdres = true;
+this.hideCreate = true;
+this.hideAllBooks = false;
+    
+  }
   
   
   ShowBooks(){
+    this.showOrdres = false;
     this.hideCreate = true;
     this.hideAllBooks = true;
   }
   ShowCreate(){
+    this.showOrdres = false;
     this.hideCreate = false;
     this.hideAllBooks = false;
   }
