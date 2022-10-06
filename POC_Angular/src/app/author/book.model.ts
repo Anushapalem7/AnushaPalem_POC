@@ -11,5 +11,6 @@ export class Book{
     activeStatus:string='';
     blocked:boolean=false;
     price:number=0;
+    image?:FormData;
     publishedDate:Date = new Date;
 }

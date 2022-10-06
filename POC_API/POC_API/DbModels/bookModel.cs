@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
-
-#nullable disable
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace POC_API.DbModels
 {
-    public partial class Book
+    public class bookModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -17,7 +18,7 @@ namespace POC_API.DbModels
         public string ActiveStatus { get; set; }
         public bool? Blocked { get; set; }
         public int? Price { get; set; }
+        public IFormFile ImagePath { get; set; }
         public DateTime? PublishedDate { get; set; }
-        public string ImagePath { get; set; }
     }
 }

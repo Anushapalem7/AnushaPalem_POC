@@ -3,9 +3,7 @@ export class Order{
     bookTitle:string="";
     bookId:number=0;
     userId:number=0;
-    quantity:number=0;
     price:number=0;
-    address : string ="";
-    status : string ="";
+    paymentType : string="";
     orderDate:Date = new Date;
 }

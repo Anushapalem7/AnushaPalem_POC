@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, TitleStrategy } from '@angular/router';
 import { User } from '../Models/user.model';
 import { LoginServiceService } from '../Services/login.service';
 
@@ -13,12 +13,15 @@ export class LoginComponent implements OnInit {
   public showPopup =false;
   user: User = new User();
   userType:string ='';
+  public saveSuccess = false;
+  public registerSuccess = false;
 
   constructor(private _service:LoginServiceService,private _router:Router,private http: HttpClient) { }
   ErrorMessage:any='';
 
   
   ngOnInit(): void {
+    
   }
   OpenPopup(){
     debugger;
@@ -28,13 +31,15 @@ export class LoginComponent implements OnInit {
 
   loginUser(){
     this._service.loginUser(this.user).subscribe(res=>{
+      this.saveSuccess = true;
+      setTimeout(() => { if(res.userData.userTpe == "Author")
+      this._router.navigate(['author']);
+      if(res.userData.userTpe == "Reader")
+      this._router.navigate(['reader']);}, 1000);
       localStorage.setItem('userName',this.user.UserName);
       localStorage.setItem('userId',res.userData.id);
       localStorage.setItem('token',res.token);
-      if(res.userData.userTpe == "Author")
-      this._router.navigate(['author']);
-      if(res.userData.userTpe == "Reader")
-      this._router.navigate(['reader']);
+      
       console.log(res);
     },res=>
     {
@@ -49,6 +54,9 @@ export class LoginComponent implements OnInit {
     this.user.UserTpe = event.target.value;
     console.log(this.userType);
   }
+  OpenLogin(){
+    this.showPopup = false;
+  }
   Register(){
     debugger;
     var userdto = {
@@ -58,7 +66,8 @@ export class LoginComponent implements OnInit {
       UserTpe : this.user.UserTpe
     };
     
-    this.http.post("https://localhost:44351/api/user", userdto).subscribe(res => { this._router.navigate(['login']);}, res => console.log(res))
+    this.http.post("https://localhost:44351/api/user", userdto).subscribe(res => 
+    {this.registerSuccess = true; setTimeout(() => {this.registerSuccess = false;this.showPopup = false; this._router.navigate(['login']); }, 2000); }, res => console.log(res))
 
     this.user = new User();
   }

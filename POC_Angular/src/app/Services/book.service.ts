@@ -10,7 +10,9 @@ export class BookService {
     _loginUrl="https://localhost:44351/api/user/login-user";
     _registerUrl="https://localhost:44351/api/user";
     _readerBooks="https://localhost:44351/api/books/ReaderBooks";
+    _searchBooks ="https://localhost:44351/api/books/Search?title=";
     _authorBooks="https://localhost:44351/api/books/AuthorBooks?id=";
+    _buyBook = "https://localhost:44351/api/books/loginBuy?id=";
     _authorAllBooks="https://localhost:44351/api/books/AuthorAllBooks?id=";
     _booksUrl ="https://localhost:44351/api/books";
     idUrl ="https://localhost:44351/api/books?id=";
@@ -20,8 +22,16 @@ export class BookService {
      return this.http.get<any>(this._readerBooks);
   }
   getAuthorBooks(id :any){
-    debugger
+   
     return this.http.get<any>(this._authorBooks+id);
+  }
+
+  getBuyBooks(id :any){
+   debugger;
+    return this.http.get<any>(this._buyBook+id);
+  }
+  SearchResult(input : any){
+ return this.http.get<any>(this._searchBooks+input)
   }
   getAuthorAllBooks(id :any){
     debugger

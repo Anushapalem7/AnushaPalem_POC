@@ -115,6 +115,7 @@ li a {
 #books td, #books th {
   border: 3px solid #ddd;
   padding: 8px;
+  line-height: 40px;
 }
 
 #books tr {background-color: #f2f2f2;}
@@ -152,4 +153,23 @@ font-size: 18px;
 text-align: center;
 }
 #allBooks:hover, #createBook:hover, #otherBooks:hover {background-color: skyblue;}
+
+#payment{
+  background: url("..\..\assets\pay.jpg");
+  background-size:cover;
+  height: auto;
+  width: auto;
+  background-repeat: no-repeat;
+ }
+ .purchase{
+  margin:20px; 
+  margin-right: 10px;
+  font-size :18px;
+   font-family: Arial, Helvetica, sans-serif;
+   width: 100px;
+   padding: 20px;
+   line-height: 50px;
+   color: beige;
+ }
+
 

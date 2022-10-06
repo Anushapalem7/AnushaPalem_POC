@@ -19,9 +19,15 @@ export class AuthorComponent implements OnInit {
   public isEdit = false;
   public isBlocked = false;
   public isNotReader = true;
+  public saveSuccess = false;
+  public showPopup = false;
   public userId = "";
   public userName = localStorage.getItem('userName');
+   user:string = "";
   public userJson = localStorage.getItem('userId');
+  public formData=new FormData();
+ fileToUpload: any;
+
   
   
   constructor(private _service:BookService,private _router:Router,private http: HttpClient) { }
@@ -30,6 +36,7 @@ export class AuthorComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.userJson !== null ? JSON.parse(this.userJson) : " ";
+    this.user = this.userName !== null ? this.userName : "";
     this.GetDataFromServer();
     this.book.activeStatus="Active";
   }
@@ -55,6 +62,7 @@ export class AuthorComponent implements OnInit {
 
   }
   onSelected(value:string): void {
+    debugger;
 		this.book.activeStatus = value;
     console.log(this.book.activeStatus);
 	}
@@ -107,8 +115,11 @@ export class AuthorComponent implements OnInit {
       this._service.editBook(bookData).subscribe(res=>{
         this._router.navigate(['author']);
         this.GetDataFromServer();
+        this.saveSuccess =true;
         this.hideAllBooks = true;
         this.hideCreate=true;
+        setTimeout(() => { this.saveSuccess = false }, 2000);
+
         this.book = new Book();
        },res=>
        {
@@ -130,11 +141,26 @@ export class AuthorComponent implements OnInit {
         Price : +(this.book.price),
         PublishedDate : "2022-09-19"
       };
-      this._service.addBook(bookData2).subscribe(res=>{
-        this._router.navigate(['author']);
+
+      const uploadData = new FormData();
+      uploadData.append('image', this.fileToUpload,this.fileToUpload.name);
+      uploadData.append('Title', this.book.title);
+      uploadData.append('Price', this.book.price.toString());
+      uploadData.append('Category', this.book.category);
+      uploadData.append('Author', this.user);
+      uploadData.append('ActiveStatus', this.book.activeStatus);
+      console.log( "Active Status in form data :"+this.book.activeStatus);
+      uploadData.append('Content', this.book.content);
+      uploadData.append('Publisher', this.book.publisher);
+      uploadData.append('PublishedDate',  "2022-09-19");
+      uploadData.append('Blocked', 'false');
+      uploadData.append('AuthorId', this.userId);
+      this._service.addBook(uploadData).subscribe(res=>{
+       this.saveSuccess = true;
+       this.hideAllBooks = true;
+       this.hideCreate=true;
+        setTimeout(() => { this.saveSuccess = false }, 2000);
         this.GetDataFromServer();
-        this.hideAllBooks = true;
-        this.hideCreate=true;
         this.book = new Book();
        },res=>
        {
@@ -145,6 +171,16 @@ export class AuthorComponent implements OnInit {
     }
     
   }
+
+  
+  openForm(input : any) {
+    this.book = input;
+this.hideCreate = true;
+this.hideAllBooks = false;
+
+    this.showPopup = true;
+  }
+
   ShowBooks(){
     this.books = this.myBooks;
     this.hideCreate = true;
@@ -180,19 +216,18 @@ export class AuthorComponent implements OnInit {
       return ;
     }
 
-    let fileToUpload=<File>files[0];
-    const formData=new FormData();
-
-    formData.append('file',fileToUpload,fileToUpload.name);
-    this._service.upload(formData).subscribe(res=>{
-      this._router.navigate(['author']);
-      this.GetDataFromServer();
-     },res=>
-     {
-       console.log(res);
-       this.ErrorMessage="Some error have occured";
-       document.getElementById('btnErrorMsg')?.click();
-     });
+    this.fileToUpload=<File>files[0];
+    this.formData.append('file',this.fileToUpload,this.fileToUpload.name);
+    
+    // this._service.upload(formData).subscribe(res=>{
+    //   this._router.navigate(['author']);
+    //   this.GetDataFromServer();
+    //  },res=>
+    //  {
+    //    console.log(res);
+    //    this.ErrorMessage="Some error have occured";
+    //    document.getElementById('btnErrorMsg')?.click();
+    //  });
   }
 
 }

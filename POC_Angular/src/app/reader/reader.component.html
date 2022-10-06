@@ -11,10 +11,14 @@
             <ul>
                 <li><img class="logo" src="././assets/logo.png"></li>
                 <li style="margin-top: 10px;"><a class="nav-link active" aria-current="page"
-                        [routerLink]="['login']">DigiBooks</a></li>
-                        <li style="margin-left: 900px;margin-top: 20px;font-size: 16px;"> Anusha Palem</li>
-                <li style="margin-top: 10px;font-size: 16px;"><a class="nav-link"
-                        [routerLink]="['logout']">LogOut</a></li>
+                    href=""> DigiBooks</a></li>
+                     <li *ngIf ="isLoggedIn" style="margin-left: 900px;margin-top: 20px;font-size: 16px;"> Welcome {{userName}}</li>&nbsp;
+                     <li *ngIf ="isLoggedIn" style="color: #000;"> <i class="fa" style="font-size:24px;margin-top: 13px;" (click)="cart()"> &nbsp; &#xf07a;</i>
+                        <span class='badge badge-warning' id='lblCartCount'> {{count}} </span></li>
+                        <li *ngIf ="!isLoggedIn"  style="margin-top: 10px;margin-left: 1000px; font-size: 16px;"><a class="nav-link" [routerLink]="['login']">Login</a></li>
+                        
+                <li *ngIf ="isLoggedIn" style="margin-top: 10px;font-size: 16px;"><a class="nav-link"
+                    [routerLink]="['login']" (click) = "logOut()">LogOut</a></li>
             </ul>
         </div>
     </div>
@@ -25,14 +29,18 @@
                 <li style="margin-top: 10px;"><a id="createBook"
                     type="button" (click)="ShowCreate()">Search Book</a></li>
             <li style="margin-top: 10px;"><a id="orderBook"
-                type="button" (click)="showOrders()">My orders</a></li>
+                type="button" (click)="showOrders()">My Books</a></li>
         </ul>
         </div>
     </div>
 
     
     <div class="gridStyles" *ngIf="hideAllBooks">
-        <h3 class="createHead"> All Books</h3>
+        <div  class="alert alert-success" style="background-color:red;line-height: 50px;" *ngIf="showlogin">
+            <strong>Please login to Buy a Book</strong>
+        </div>
+        <h3  *ngIf="!isSearch" class="createHead"> All Books</h3>
+        <h3 *ngIf="isSearch" class="createHead">Search Result</h3>
         <table id="books">
             <thead>
                 <tr>
@@ -54,53 +62,79 @@
                     <td>{{item.price}}</td>
                     <td>{{ item.publishedDate }}</td>
                     <td><button type="button"
-                            style="border:transparent;border-radius: 2px; background-color: green;color: white;">Buy</button>
+                            style="border:transparent;border-radius: 2px; background-color: green;color: white;" (click)="openForm(item)">Buy</button>
                 </tr>
             </tbody>
         </table>
 
     </div>
+
     <div class="gridStyles" *ngIf="showOrdres">
-        <h3 class="createHead"> My Orders</h3>
+        <div class="alert alert-success" style="background-color: seagreen;line-height: 50px;" *ngIf="saveSuccess">
+            <strong> Order Placed Successfully ........!</strong>
+        </div>
+        <h3 class="createHead"> Purchased Books</h3>
         <table id="books">
             <thead>
                 <tr>
-                    <th>Book</th>
-                    <th>Quantity</th>
+                    <th>Book Title</th>
                     <th>Price</th>
-                    <th>Order Date</th>
-                    <th>Status</th>
+                    <th>Payment Mode</th>
+                    <th>OrderDate</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of orders">
                     <td>{{ item.bookTitle }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{item.status}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.paymentType}}</td>
                     <td>{{ item.orderDate }}</td>
                     <td><button type="button"
-                            style="border:transparent;border-radius: 2px; background-color: green;color: white;">Order Details</button>
+                            style="border:transparent;border-radius: 2px; background-color: green;color: white;" >View</button>
                 </tr>
             </tbody>
         </table>
 
     </div>
+
+  
     <form class="LoginForm" *ngIf="!hideCreate">
         <br />
         <h3 class="searchHead"> Search &nbsp;<i class="fa fa-search"></i> </h3>
-        <input class="inputstyle" id="title" type="text" placeholder="Enter Title"><br>
+        <input class="inputstyle" name="title" [(ngModel)]="book.title" id="title" type="text" placeholder="Enter Title"><br>
         <br />
-        <input class="inputstyle" id="author" type="Text" placeholder="Enter Author"><br>
+        <input class="inputstyle" name="author" [(ngModel)]="book.author" id="author" type="Text" placeholder="Enter Author"><br>
         <br />
-        <input class="inputstyle" id="publisher" type="Text" placeholder="Enter Publisher"><br>
+        <input class="inputstyle" name="publisher" [(ngModel)]="book.publisher"id="publisher" type="Text" placeholder="Enter Publisher"><br>
         <br />
-        <input class="inputstyle" id="rDate" type="date" placeholder="Enter Released Date"><br>
+        <input class="inputstyle"  name="publishedDate" [(ngModel)]="book.publishedDate" id="rDate" type="date" placeholder="Enter Released Date"><br>
         <br />
         <!-- <input class="submitButton" value="Search" type="button"> -->
-        <button class="submitButton" type="submit"><i class="fa fa-search"></i>&nbsp;Search</button>
+        <button class="submitButton" type="submit" (click)="Search()"><i class="fa fa-search" ></i>&nbsp;Search</button>
     </form>
+    
+    <form class="LoginForm" id ="payment" style="border-style: outset; margin-right: 200px;margin-left: 300px;width: 50%; background-color: white;" *ngIf="showPopup">
+        <br />
+        <h3 class="searchHead"> Buy </h3>
+        <label class="purchase"  for="title">Book Title  &nbsp;&nbsp;   :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{book.title}} </label><br/>
+        <label class="purchase" for="title">Price  &nbsp;&nbsp;   :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{book.price}} </label><br/>
+        <label class="purchase" for="title">Selecet Payment Mode  </label><br/>
+        <label class="purchase" for="title"> <input type="radio" id="banking" name="user" value="Internet Banking" (click)="selectType($event)">
+            <label for="author">InterNet Banking</label> &nbsp;
+            <input type="radio" id="gpay" name="user" value="Google Pay" (click)="selectType($event)">
+            <label for="reader">Google Pay</label> &nbsp;
+            <input type="radio" id="upi" name="user" value="UPI" (click)="selectType($event)">
+            <label for="reader">UPI</label> </label><br/>
+            <br/>
+       
+        <!-- <input class="submitButton" value="Search" type="button"> -->
+        <button style="margin-left: 250px;background-color: green; margin-bottom: 30px;border-style: outset;border-radius: 5px;width: 100px;height: 40px;font-size: 18px;font-style: oblique;border-color: transparent;color:white;" type="submit" (click)="AddOrder()">Continue</button>&nbsp;&nbsp;
+        <button style="background-color:red;margin-bottom: 30px;border-style: outset;border-radius: 5px;width: 100px;height: 40px;font-size: 18px;font-style: oblique;border-color: transparent;color:white;" type="submit"(click)="ShowBooks()">cancel</button>
+
+    </form>
+    
+     
 </body>
 
 </html>

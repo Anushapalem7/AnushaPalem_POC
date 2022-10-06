@@ -28,6 +28,9 @@
         </div>
     
     <div class="gridStyles" *ngIf ="hideAllBooks">
+        <div class="alert alert-success" style="background-color: seagreen;line-height: 50px;" *ngIf="saveSuccess">
+            <strong> Book saved Successfully ........!</strong>
+        </div>
         <h3 class="createHead"> All Books</h3>
         <table id="books">
             <thead>
@@ -50,7 +53,7 @@
                     <td>{{item.price}}</td>
                     <td>{{ item.publishedDate }}</td>
                     <td>
-                    <button *ngIf="!isNotReader"type="button" style="border:transparent;border-radius: 2px; background-color: green;color: white;">Buy</button>
+                    <button *ngIf="!isNotReader"type="button" style="border:transparent;border-radius: 2px; background-color: green;color: white;"  (click)="openForm(item)">Buy</button>
                     <button *ngIf="isNotReader" type="button"style="margin-right:2px;border:transparent;border-radius: 2px; background-color:blue;color: white;" (click)="Edit(item)">Edit</button>
                     <button *ngIf="!item.blocked && isNotReader" name="block"  type="button"style="margin-right:2px; border:transparent;border-radius: 2px; background-color: orange;color: white;" (click)="Block(item)">Block</button>
                     <button *ngIf="item.blocked && isNotReader" name="unblock" type="button" style="border:transparent;border-radius: 2px; background-color:olive ;color:white;" (click)="Block(item)">UnBlock</button> 
@@ -58,12 +61,13 @@
                 </tr>
             </tbody>
         </table>
-
+       
     </div>
 
 
     <form *ngIf="!hideCreate" class="LoginForm">
         <br />
+       
         <h3 class="createHead"> Create Book &nbsp; <i class="fa fa-book" style="font-size:30px;color:white"></i> </h3>
         <input class="inputstyle"  name="title" [(ngModel)]="book.title" id="title" type="text" placeholder="Enter Title"><br>
         <br />
@@ -82,7 +86,8 @@
         <br />
         <input class="contentBox" name="content" [(ngModel)]="book.content" id="content" type="Text" style="height: 100px;" placeholder="Content Here ..."><br>
         <br />
-        Upload Cover Image :
+        <label  style="margin-left: 400px; color: seashell; font-size: 18px;">Upload Cover Image : </label>
+        
         <input type="file" #file (change)="uploadFile(file.files)" value="browse
         " style="display: none;" />
         <button  (click)="file.click()" >Upload</button>

@@ -2,8 +2,10 @@
     <div id ="navigation">
     <ul>
         <li><img class ="logo"  src="././assets/logo.png"></li>
-        <li style="margin-top: 10px;"><a class="nav-link active" aria-current="page" [routerLink]="['login']">Digi-Books</a></li> 
-        <li style="margin-top: 10px;margin-left: 1000px;font-size: 16px;"><a class="nav-link" (click)="OpenPopup()">SignUp</a></li>
+        <li style="margin-top: 10px;"><a class="nav-link active" aria-current="page" [routerLink]="['reader']">Digi-Books</a></li> 
+        <li style="margin-top: 10px;margin-left: 950px;font-size: 16px;"><a class="nav-link" [routerLink]="['login']" (click)="OpenLogin()">Login</a></li>
+        <li style="margin-top: 10px;font-size: 16px;"><a class="nav-link" [routerLink]="['login']" (click)="OpenPopup()">SignUp</a></li>
+
     </ul>
     
     </div>
@@ -13,12 +15,14 @@
     </div>
     <div class="column">
         <div>
-          <form class="LoginForm" *ngIf = "showPopup">
+          <form class="LoginForm" *ngIf = "showPopup">  
 
             <h3 class="loginhead">Register Here..!!</h3>
-            <input class="inputstyle" name="Email" [(ngModel)]="user.Email" id="email" type="text" placeholder="Email"><br>
-            <br />
-            <input class="inputstyle" name="UserName" [(ngModel)]="user.UserName" id="uName" type="text" placeholder="UserName"><br>
+            <div class="form-group">
+            <input class="inputstyle"  class="form-control" required name="Email" [(ngModel)]="user.Email" id="email" type="text" placeholder="Email" #Email="ngModel"><br/>
+            <br/>
+            </div>
+            <input class="inputstyle" name="UserName" [(ngModel)]="user.UserName" id="uName" type="text" placeholder="Username"><br>
             <br />
             <input class="inputstyle"  name="Password" [(ngModel)]="user.Password" id="password" type="password" placeholder="Password"><br>
             <br />
@@ -32,23 +36,34 @@
                 <label for="reader">Reader</label>
             </div>
             <br/>
-            <input class="registerButton" value="Register" type="button" (click)="Register()"><input class="registerButton" style=" background-color: #f44336;" value="Cancle" type="button">
+            <input class="registerButton" value="Register" type="button" (click)="Register()"><input class="registerButton" style=" background-color: #f44336;" value="cancel" type="button"><br/><br/>
+            <div class="alert alert-success" style="background-color: seagreen;line-height: 50px;" *ngIf="registerSuccess">
+                <strong>Successfully Registered........!<br/>
+                Please login......
+                </strong>
+            </div>
+            <br/>
+            <br/>
         </form>
             <form class="LoginForm" *ngIf = "!showPopup">
             <br/><br/>
                 <h3 class="loginhead">Login Here..!!</h3>
                 <br/>
-                <input class="inputstyle" name="UserName" [(ngModel)]="user.UserName" id="uName" type="text" placeholder="UserName"><br>
+                <input class="inputstyle" name="UserName" [(ngModel)]="user.UserName" id="uName" type="text" placeholder="Username"><br>
                 <br /><br />
                 <input class="inputstyle" name="Password" [(ngModel)]="user.Password" id="password" type="password" placeholder="Password"><br>
                 <br /><br />
-                <div class ="radioStyle">
+                <div class="alert alert-success" style="background-color: seagreen;line-height: 50px;" *ngIf="saveSuccess">
+                    <strong>Successfully logged In........!</strong>
+                </div>
+               
+                <!-- <div class ="radioStyle">
                     <label for="selectUser">Select User Type : </label>
                     <input type="radio" id="author" name="user" value="Author" (click)="selectType($event)">
                     <label for="author">Author</label> &nbsp;
                     <input type="radio" id="reader" name="user" value="Reader" (click)="selectType($event)">
                     <label for="reader">Reader</label>
-                </div>
+                </div> -->
                 <input class="submitButton" value="Login " type="button" (click)="loginUser()">
             </form>
         </div>

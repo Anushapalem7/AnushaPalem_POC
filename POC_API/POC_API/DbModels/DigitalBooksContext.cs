@@ -44,11 +44,22 @@ namespace POC_API.DbModels
 
                 entity.Property(e => e.Content).HasMaxLength(500);
 
+                entity.Property(e => e.ImagePath).HasMaxLength(50);
+
                 entity.Property(e => e.PublishedDate).HasColumnType("date");
 
                 entity.Property(e => e.Publisher).HasMaxLength(50);
 
                 entity.Property(e => e.Title).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.Property(e => e.BookTitle).HasMaxLength(50);
+
+                entity.Property(e => e.OrderDate).HasColumnType("date");
+
+                entity.Property(e => e.PaymentType).HasMaxLength(50);
             });
 
             modelBuilder.Entity<User>(entity =>

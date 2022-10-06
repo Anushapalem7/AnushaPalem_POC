@@ -29,7 +29,7 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
      GridUIModule,
      HttpClientModule,
-    RouterModule.forRoot([{path:"login", component:LoginComponent},{path:"", component:LoginComponent},{path:'author', component:AuthorComponent},{path:'reader', component:ReaderComponent},{path:'author/logout', component:LoginComponent},{path:'reader/logout', component:LoginComponent}]),
+    RouterModule.forRoot([{path:"login", component:LoginComponent},{path:"", component:ReaderComponent},{path:'author', component:AuthorComponent},{path:'reader', component:ReaderComponent},{path:'author/logout', component:LoginComponent},{path:'reader/logout', component:LoginComponent},{path:'login/reader',component:ReaderComponent},{path:'login/reader/login',component:LoginComponent}]),
     BrowserAnimationsModule,
     AppMaterialModule
   ],
