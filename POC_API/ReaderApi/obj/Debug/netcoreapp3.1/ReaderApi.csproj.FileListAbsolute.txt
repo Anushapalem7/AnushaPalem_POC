@@ -91,3 +91,8 @@ C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\ReaderApi\bin\Debug
 C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\ReaderApi\bin\Debug\netcoreapp3.1\Gateway.dll
 C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\ReaderApi\bin\Debug\netcoreapp3.1\Gateway.pdb
 C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\ReaderApi\bin\Debug\netcoreapp3.1\POC_API.StaticWebAssets.xml
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\ReaderApi\bin\Debug\netcoreapp3.1\Consul.dll
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\ReaderApi\bin\Debug\netcoreapp3.1\Ocelot.Provider.Consul.dll
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\ReaderApi\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard1.3\System.Net.Http.WinHttpHandler.dll
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\ReaderApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard1.3\System.Net.Http.WinHttpHandler.dll
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\ReaderApi\obj\Debug\netcoreapp3.1\ReaderApi.csproj.CopyComplete

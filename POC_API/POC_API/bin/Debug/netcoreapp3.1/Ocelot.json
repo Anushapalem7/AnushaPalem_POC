@@ -10,8 +10,33 @@
         }
       ],
       "DownstreamScheme": "https",
-      "ServiceName": "customerService",
       "UpstreamPathTemplate": "/api/gateway/api/books",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/books/ReaderBooks",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44351"
+        }
+      ],
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/books/ReaderBooks",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/books/AuthorBooks",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44351"
+        }
+      ],
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/books/AuthorBooks",
       "UpstreamHttpMethod": [ "Get" ]
     }
   ],

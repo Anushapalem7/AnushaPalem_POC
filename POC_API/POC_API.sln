@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaderApi", "ReaderApi\Read
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway", "Gateway\Gateway.csproj", "{7EBB71BD-0CC8-4333-B050-EBCC409C5B60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common", "common\common.csproj", "{D519ADB2-811A-4492-A934-270D940369CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7EBB71BD-0CC8-4333-B050-EBCC409C5B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EBB71BD-0CC8-4333-B050-EBCC409C5B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EBB71BD-0CC8-4333-B050-EBCC409C5B60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D519ADB2-811A-4492-A934-270D940369CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D519ADB2-811A-4492-A934-270D940369CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D519ADB2-811A-4492-A934-270D940369CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D519ADB2-811A-4492-A934-270D940369CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
