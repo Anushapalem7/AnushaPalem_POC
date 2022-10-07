@@ -18,5 +18,9 @@
     <Folder Include="Resources\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Gateway\Gateway.csproj" />
+  </ItemGroup>
+
 
 </Project>
