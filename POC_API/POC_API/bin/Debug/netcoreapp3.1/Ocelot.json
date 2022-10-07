@@ -3,46 +3,59 @@
     {
       "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/books",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "44351"
-        }
-      ],
+      "ServiceName": "Author",
       "DownstreamScheme": "https",
-      "UpstreamPathTemplate": "/api/gateway/api/books",
+      "UpstreamPathTemplate": "/books",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "UseServiceDiscovery": true,
-      "DownstreamPathTemplate": "/api/books/ReaderBooks",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "44351"
-        }
-      ],
+      "DownstreamPathTemplate": "/api/books",
+      "ServiceName": "Author",
       "DownstreamScheme": "https",
-      "UpstreamPathTemplate": "/books/ReaderBooks",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamPathTemplate": "/books",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/books",
+      "ServiceName": "Author",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/books",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/books",
+      "ServiceName": "Author",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/books",
+      "UpstreamHttpMethod": [ "Delete" ]
     },
     {
       "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/books/AuthorBooks",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "44351"
-        }
-      ],
+      "ServiceName": "Author",
       "DownstreamScheme": "https",
       "UpstreamPathTemplate": "/books/AuthorBooks",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/books/AuthorAllBooks",
+      "ServiceName": "Author",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/books/AuthorAllBooks",
       "UpstreamHttpMethod": [ "Get" ]
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:44335"
-   
+    //"BaseUrl": "http://localhost:44335"
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": "8500",
+      "Type": "Consul"
     }
+  }
   
 }

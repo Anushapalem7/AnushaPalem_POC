@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using common;
 
 namespace POC_API
 {
@@ -42,6 +43,7 @@ namespace POC_API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt:Key"]))
                 };
             });
+            services.AddConsulConfig(Configuration);
             services.AddControllers();
         }
 
@@ -53,6 +55,7 @@ namespace POC_API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseConsul(Configuration);
             app.UseHttpsRedirection();
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());

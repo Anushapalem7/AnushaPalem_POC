@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gateway\Gateway.csproj" />
+    <ProjectReference Include="..\common\common.csproj" />
     <ProjectReference Include="..\POC_API\POC_API.csproj" />
   </ItemGroup>
 

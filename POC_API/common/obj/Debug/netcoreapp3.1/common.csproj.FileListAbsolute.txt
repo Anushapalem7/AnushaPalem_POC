@@ -1,0 +1,10 @@
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\common\bin\Debug\netcoreapp3.1\common.deps.json
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\common\bin\Debug\netcoreapp3.1\common.dll
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\common\bin\Debug\netcoreapp3.1\common.pdb
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\common\obj\Debug\netcoreapp3.1\common.csproj.AssemblyReference.cache
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\common\obj\Debug\netcoreapp3.1\common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\common\obj\Debug\netcoreapp3.1\common.AssemblyInfoInputs.cache
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\common\obj\Debug\netcoreapp3.1\common.AssemblyInfo.cs
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\common\obj\Debug\netcoreapp3.1\common.csproj.CoreCompileInputs.cache
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\common\obj\Debug\netcoreapp3.1\common.dll
+C:\Users\cogdotnet1696\Documents\poc\AnushaPalem_POC\POC_API\common\obj\Debug\netcoreapp3.1\common.pdb

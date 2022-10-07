@@ -21,25 +21,13 @@ namespace POC_API.Controllers
             return db.Books;
         }
         [HttpGet]
-        [Route("ReaderBooks")]
-        public IEnumerable<Book> GetUnBlocked()
-        {
-            return db.Books.Where(x => x.Blocked == false).ToList();
-        }
-        [HttpGet]
         [Route("AuthorBooks")]
         public IEnumerable<Book> Get(int id)
         {
             return db.Books.Where(x => x.AuthorId == id).ToList();
         }
 
-        [HttpGet]
-        [Route("loginBuy")]
-        public Book GetBuy(int id)
-        {
-            Book bs = db.Books.Where(x => x.Id == id).FirstOrDefault();
-            return bs;
-        }
+   
 
         [HttpGet]
         [Route("AuthorAllBooks")]
@@ -49,13 +37,7 @@ namespace POC_API.Controllers
         }
 
 
-        [HttpGet]
-        [Route("Search")]
-        public IEnumerable<Book> Search(string title)
-        {
-            return db.Books.Where(x => x.Title == title ).ToList();
-        }
-
+      
         [HttpPost]
         public IActionResult Post([FromForm] bookModel book )
         { 
