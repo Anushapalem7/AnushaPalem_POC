@@ -1,4 +1,5 @@
 using common;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using ReaderApi.Consumers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +31,23 @@ namespace ReaderApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMassTransit(x => {
+                x.AddConsumer<blockConsumer>();
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+                {
+                    config.Host(new Uri("rabbitmq://localhost/"), h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+
+                    config.ReceiveEndpoint("BlockQueue", ep => {
+                        ep.ConfigureConsumer<blockConsumer>(provider);
+                    });
+                }));
+
+            });
+            services.AddMassTransitHostedService();
             services.AddControllers();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
             AddJwtBearer(options =>
@@ -44,6 +63,7 @@ namespace ReaderApi
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt:Key"]))
                 };
             });
+
             services.AddConsulConfig(Configuration);
         }
 
@@ -57,6 +77,8 @@ namespace ReaderApi
             app.UseConsul(Configuration);
 
             app.UseHttpsRedirection();
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseRouting();
 

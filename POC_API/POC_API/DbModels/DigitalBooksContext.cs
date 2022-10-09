@@ -19,6 +19,8 @@ namespace POC_API.DbModels
 
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderCount> OrderCounts { get; set; }
+        public virtual DbSet<PurchaseCount> PurchaseCounts { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -60,6 +62,30 @@ namespace POC_API.DbModels
                 entity.Property(e => e.OrderDate).HasColumnType("date");
 
                 entity.Property(e => e.PaymentType).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<OrderCount>(entity =>
+            {
+                entity.HasKey(e => e.OrderCount1);
+
+                entity.ToTable("OrderCount");
+
+                entity.Property(e => e.OrderCount1).HasColumnName("OrderCount");
+            });
+
+            modelBuilder.Entity<PurchaseCount>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("PurchaseCount");
+
+                entity.Property(e => e.Bookid).HasColumnName("bookid");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("id");
+
+                entity.Property(e => e.PurchaseCount1).HasColumnName("purchaseCount");
             });
 
             modelBuilder.Entity<User>(entity =>

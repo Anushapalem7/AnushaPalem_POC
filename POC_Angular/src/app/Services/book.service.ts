@@ -7,16 +7,16 @@ import { Router } from '@angular/router';
 })
 export class BookService {
 
-    _loginUrl="https://localhost:44351/api/user/login-user";
-    _registerUrl="https://localhost:44351/api/user";
-    _readerBooks="https://localhost:44351/api/books/ReaderBooks";
-    _searchBooks ="https://localhost:44351/api/books/Search?title=";
-    _authorBooks="https://localhost:44351/api/books/AuthorBooks?id=";
-    _buyBook = "https://localhost:44351/api/books/loginBuy?id=";
-    _authorAllBooks="https://localhost:44351/api/books/AuthorAllBooks?id=";
-    _booksUrl ="https://localhost:44351/api/books";
-    idUrl ="https://localhost:44351/api/books?id=";
-    uploadUrl = "https://localhost:44351/api/upload";
+    _loginUrl="https://localhost:44335/user/login-user";
+    _registerUrl="https://localhost:44335/user";
+    _readerBooks="https://localhost:44335/reader/ReaderBooks";
+    _searchBooks ="https://localhost:44335/reader/Search?title=";
+    _authorBooks="https://localhost:44335/books/AuthorBooks?id=";
+    _buyBook = "https://localhost:44335/reader/loginBuy?id=";
+    _authorAllBooks="https://localhost:44335/books/AuthorAllBooks?id=";
+    _booksUrl ="https://localhost:44335/books";
+    idUrl ="https://localhost:44335/books?id=";
+    uploadUrl = "https://localhost:44335/upload";
     constructor(private http:HttpClient,private _router:Router) { }
   getReaderBooks(){
      return this.http.get<any>(this._readerBooks);

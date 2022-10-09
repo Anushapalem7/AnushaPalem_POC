@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,14 +27,27 @@ namespace Gateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           // services.AddControllersWithViews();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                  "CorsPolicy",
+                  builder => builder.WithOrigins("http://localhost:4200")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials());
+            });
+            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            // services.AddControllersWithViews();
             services.AddOcelot().AddConsul();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("CorsPolicy");
             app.UseOcelot().Wait();
+           
         }
     }
 }

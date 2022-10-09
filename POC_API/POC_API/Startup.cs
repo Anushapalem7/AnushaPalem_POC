@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using common;
+using MassTransit;
 
 namespace POC_API
 {
@@ -43,6 +44,17 @@ namespace POC_API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["jwt:Key"]))
                 };
             });
+            services.AddMassTransit(x => {
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+                {
+                    config.Host(new Uri("rabbitmq://localhost/"), h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+                }));
+            });
+            services.AddMassTransitHostedService();
             services.AddConsulConfig(Configuration);
             services.AddControllers();
         }

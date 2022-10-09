@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 })
 export class OrderService {
 
-    _orderUrl="https://localhost:44351/api/order?id=";
-    _orderUrlAdd="https://localhost:44351/api/order";
+    _orderUrl="https://localhost:44335/order?id=";
+    _orderUrlAdd="https://localhost:44335/order";
     constructor(private http:HttpClient,private _router:Router) { }
   
     getOrders(id :any){
